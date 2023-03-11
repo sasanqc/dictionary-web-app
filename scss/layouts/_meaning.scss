@@ -1,0 +1,43 @@
+.meaning {
+  margin-bottom: 6.3rem;
+  &__header {
+    display: flex;
+    gap: 2.3rem;
+    margin-bottom: 3.8rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__type {
+    display: inline-block;
+  }
+  &__divider {
+    flex: 1;
+    height: 1px;
+    background-color: var(--clr-light-shade-200);
+  }
+  &__title {
+    color: var(--clr-light-shade-300);
+    margin-bottom: 2.4rem;
+  }
+  &__items {
+    margin-left: 2.2rem;
+  }
+  &__item {
+    display: flex;
+    gap: 2.5rem;
+    &::before {
+      content: "•";
+      color: var(--clr-primary-purple);
+    }
+    &:not(:last-child) {
+      margin-bottom: 1.3rem;
+    }
+    &--sample {
+      color: var(--clr-light-shade-300);
+      &::before {
+        content: " ";
+      }
+    }
+  }
+}

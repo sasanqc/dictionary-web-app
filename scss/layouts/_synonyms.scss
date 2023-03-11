@@ -1,0 +1,12 @@
+.synonyms {
+  margin-bottom: 4rem;
+  display: flex;
+
+  &__title {
+    color: var(--clr-light-shade-300);
+    margin-right: 2.4rem;
+  }
+  &__word {
+    color: var(--clr-primary-purple);
+  }
+}

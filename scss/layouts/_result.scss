@@ -1,0 +1,11 @@
+.result {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  .heading-xl {
+    margin-bottom: 0.5rem;
+  }
+  &__phonetic {
+    color: var(--clr-primary-purple);
+  }
+}

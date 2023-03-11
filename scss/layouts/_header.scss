@@ -1,0 +1,12 @@
+.header {
+  display: grid;
+  grid-template-columns: 1fr repeat(3, auto);
+  align-items: center;
+  gap: 2.6rem;
+  margin-bottom: 5.2rem;
+  &__divider {
+    width: 1px;
+    height: 3.2rem;
+    background-color: var(--clr-light-shade-200);
+  }
+}
