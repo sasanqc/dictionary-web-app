@@ -10,6 +10,11 @@
   --clr-light-shade-200: #e9e9e9;
   --clr-light-shade-300: #757575;
 
+  --clr-main-bg: var(--clr-light);
+  --clr-main-text: var(--clr-dark-tint-200);
+  --clr-variant-100: var(--clr-light-shade-100);
+  --clr-toggle-bg: var(--clr-light-shade-300);
+
   --font-sans-serif: "Inter";
   --font-serif: "Lora";
   --font-mono: "Inconsolata";

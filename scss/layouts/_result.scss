@@ -1,11 +1,19 @@
+@use "../abstracts/" as *;
 .result {
   display: flex;
   justify-content: space-between;
   margin-bottom: 4rem;
+  align-items: center;
   .heading-xl {
     margin-bottom: 0.5rem;
   }
   &__phonetic {
     color: var(--clr-primary-purple);
+  }
+  &__icon {
+    @include respond(phone) {
+      width: 48px;
+      height: 48px;
+    }
   }
 }

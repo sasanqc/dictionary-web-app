@@ -1,9 +1,15 @@
+@use "../abstracts/" as *;
 .header {
   display: grid;
   grid-template-columns: 1fr repeat(3, auto);
   align-items: center;
   gap: 2.6rem;
-  margin-bottom: 5.2rem;
+  margin-bottom: rem(52, $fs-s);
+
+  @include respond(phone) {
+    margin-bottom: rem(24, $fs-s);
+  }
+
   &__divider {
     width: 1px;
     height: 3.2rem;

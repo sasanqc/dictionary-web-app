@@ -25,6 +25,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* A elements that don't have a class get default styles */

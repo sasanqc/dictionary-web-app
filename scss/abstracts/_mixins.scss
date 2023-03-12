@@ -1,8 +1,13 @@
+@use "sass:math";
 // 0 - 600px : mobile
 // 600px - 900px : tablet portrait
 // 900px - 1200px : tablet landscape
 // [1200px - 1800 px ] normal style
 // 1800px+ big screen
+$fs-xl: 12;
+$fs-l: 10;
+$fs-m: 9;
+$fs-s: 8;
 @mixin respond($breakpoint) {
   @if $breakpoint == phone {
     //600px
@@ -28,4 +33,9 @@
       @content;
     }
   }
+}
+
+// Source: https://css-tricks.com/snippets/sass/px-to-em-functions/
+@function rem($pixels, $context: $fs-desktop) {
+  @return (math.div($pixels, $context)) * 1rem;
 }

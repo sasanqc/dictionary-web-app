@@ -1,3 +1,4 @@
+@use "../abstracts/" as *;
 .search-bar {
   position: relative;
   height: 6.4rem;
@@ -16,5 +17,9 @@
     right: 2.4rem;
     top: 2.4rem;
     cursor: pointer;
+  }
+
+  @include respond(phone) {
+    margin-bottom: rem(24, $fs-s);
   }
 }

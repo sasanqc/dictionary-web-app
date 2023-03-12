@@ -3,6 +3,7 @@
   gap: 20px;
   justify-content: center;
   align-items: center;
+  user-select: none;
 
   &__input {
     visibility: hidden;

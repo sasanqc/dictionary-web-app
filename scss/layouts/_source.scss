@@ -1,3 +1,4 @@
+@use "../abstracts/" as *;
 .source {
   margin-top: 2rem;
   margin-bottom: 12.3rem;
@@ -16,5 +17,9 @@
   &__link--full:visited {
     color: var(--clr-dark-tint-200);
     border-bottom: 1px solid var(--clr-dark-tint-200);
+  }
+  @include respond(phone) {
+    margin-top: rem(24, $fs-s);
+    margin-bottom: rem(84, $fs-s);
   }
 }

@@ -19,7 +19,22 @@ html {
 body {
   font-family: var(--font-serif);
   background-color: var(--clr-light);
-  font-size: 1.8rem;
-  line-height: 2.4rem;
+  font-size: rem(18, $fs-l);
+  line-height: rem(24, $fs-l);
   color: var(--clr-dark-tint-200);
+
+  @include respond(tab-land) {
+    font-size: rem(18, $fs-m);
+    line-height: rem(24, $fs-m);
+  }
+
+  @include respond(tab-port) {
+    font-size: rem(18, $fs-s);
+    line-height: rem(24, $fs-s);
+  }
+
+  @include respond(phone) {
+    font-size: rem(15, $fs-s);
+    line-height: rem(24, $fs-s);
+  }
 }
