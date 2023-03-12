@@ -18,11 +18,11 @@ html {
 
 body {
   font-family: var(--font-serif);
-  background-color: var(--clr-light);
+  background-color: var(--clr-main-bg);
   font-size: rem(18, $fs-l);
   line-height: rem(24, $fs-l);
-  color: var(--clr-dark-tint-200);
-
+  color: var(--clr-main-text);
+  transition: all 0.25s ease;
   @include respond(tab-land) {
     font-size: rem(18, $fs-m);
     line-height: rem(24, $fs-m);
@@ -37,4 +37,11 @@ body {
     font-size: rem(15, $fs-s);
     line-height: rem(24, $fs-s);
   }
+}
+
+body.dark {
+  --clr-main-bg: var(--clr-dark);
+  --clr-main-text: var(--clr-light-shade-200);
+  --clr-variant-100: var(--clr-dark-tint-100);
+  --clr-toggle-bg: var(--clr-primary-purple);
 }
