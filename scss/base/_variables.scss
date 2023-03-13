@@ -13,7 +13,12 @@
   --clr-main-bg: var(--clr-light);
   --clr-main-text: var(--clr-dark-tint-200);
   --clr-variant-100: var(--clr-light-shade-100);
+  --clr-variant-300: var(--clr-light-shade-200);
   --clr-toggle-bg: var(--clr-light-shade-300);
+
+  --box-shadow-light: 0px 5px 30px rgba(0, 0, 0, 0.1);
+  --box-shadow-dark: 0px 5px 30px #a445ed;
+  --box-shadow: var(--box-shadow-light);
 
   --font-sans-serif: "Inter";
   --font-serif: "Lora";

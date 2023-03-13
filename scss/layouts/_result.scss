@@ -11,6 +11,8 @@
     color: var(--clr-primary-purple);
   }
   &__icon {
+    cursor: pointer;
+    color: red;
     @include respond(phone) {
       width: 48px;
       height: 48px;

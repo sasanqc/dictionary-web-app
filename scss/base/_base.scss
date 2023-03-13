@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans-serif);
   background-color: var(--clr-main-bg);
   font-size: rem(18, $fs-l);
   line-height: rem(24, $fs-l);
@@ -44,4 +44,6 @@ body.dark {
   --clr-main-text: var(--clr-light-shade-200);
   --clr-variant-100: var(--clr-dark-tint-100);
   --clr-toggle-bg: var(--clr-primary-purple);
+  --clr-variant-300: var(--clr-dark-tint-300);
+  --box-shadow: var(--box-shadow-dark);
 }

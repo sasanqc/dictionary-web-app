@@ -3,6 +3,7 @@
   position: relative;
   height: 6.4rem;
   margin-bottom: 4.3rem;
+
   &__input {
     position: absolute;
     width: 100%;
@@ -12,6 +13,32 @@
     background-color: var(--clr-variant-100);
     color: var(--clr-main-text);
     border-radius: 16px;
+    outline: none;
+    caret-color: var(--clr-primary-purple);
+    outline: none;
+    &:focus,
+    &:active {
+      border: 1px solid var(--clr-primary-purple);
+    }
+    &::placeholder {
+      opacity: 0.3;
+    }
+    &--invalid {
+      border: 1px solid var(--clr-primary-orange);
+    }
+  }
+  &__input:focus ~ &__invalid-text--visible {
+    visibility: hidden;
+  }
+  &__invalid-text {
+    position: absolute;
+    bottom: -3rem;
+    color: var(--clr-primary-orange);
+    transition: 0.25s ease;
+    visibility: hidden;
+    &--visible {
+      visibility: visible;
+    }
   }
   &__icon {
     position: absolute;
