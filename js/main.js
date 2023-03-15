@@ -1,3 +1,4 @@
+"strict mode";
 const toggleBtn = document.getElementById("checkbox-theme");
 const body = document.querySelector("body");
 const moonIcon = document.querySelector("#moon-icon");
@@ -91,6 +92,16 @@ searchBtn.addEventListener("click", async () => {
     data.meanings.forEach((meaning) => {
       reanderMeaning(meaning);
     });
+    const synonymsContainer = [
+      ...meaningsContainer.querySelectorAll(".synonyms__words"),
+    ];
+
+    synonymsContainer.forEach((el) =>
+      el.addEventListener("click", (event) => {
+        searchInput.value = event.target.textContent;
+        searchBtn.click();
+      })
+    );
 
     // add a divider after meanings
     meaningsContainer.insertAdjacentHTML(
@@ -205,6 +216,7 @@ function reanderMeaning({ partOfSpeech, definitions, synonyms }) {
     </li>
     
   `;
+
   meaningsContainer.insertAdjacentHTML("beforeend", meaningHtml);
 }
 
