@@ -32,11 +32,13 @@
   }
 }
 
-.heading-s {
+.heading-s,
+.heading-sb {
   font-size: 2rem;
   line-height: 2.4rem;
 }
 
+.body-mb,
 .body-m {
   font-size: 1.8rem;
   line-height: 2.4rem;
@@ -51,7 +53,8 @@
   }
 }
 
-.body-lb {
+.body-lb,
+.heading-sb {
   font-weight: 700;
 }
 

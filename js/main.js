@@ -1,5 +1,3 @@
-"strict mode";
-
 const toggleBtn = document.getElementById("checkbox-theme");
 const body = document.querySelector("body");
 const moonIcon = document.querySelector("#moon-icon");
@@ -10,6 +8,9 @@ const searchBtn = document.querySelector(".search-bar__icon");
 const searchInput = document.querySelector(".search-bar__input");
 const resultContainer = document.querySelector(".result");
 const meaningsContainer = document.querySelector(".meanings");
+const sourceContainer = document.querySelector(".source");
+const notFoundContainer = document.querySelector(".not-found");
+const animatedLoading = document.querySelector(".animated-loading");
 // select ===================================================
 const options = [
   { property: "var(--font-sans-serif)", label: "Sans Serif" },
@@ -71,19 +72,42 @@ function init() {
 //handle search key==================================================
 searchBtn.addEventListener("click", async () => {
   console.log("i: ", searchInput.value);
+  //clear previous word result
+  clearWordSearch();
+
+  //validation check
   if (!searchInput.value) {
     searchInput.classList.add("search-bar__input--invalid");
     invalidText.classList.add("search-bar__invalid-text--visible");
     return;
   }
-  searchInput.classList.remove("search-bar__input--invalid");
-  invalidText.classList.remove("search-bar__invalid-text--visible");
-  const data = await getWordFromAPI(searchInput.value);
-  renderResult(data);
-  data.meanings.forEach((meaning) => {
-    reanderMeaning(meaning);
-  });
+
+  try {
+    animatedLoading.classList.add("animated-loading--visible");
+    const data = await getWordFromAPI(searchInput.value);
+
+    renderResult(data);
+
+    data.meanings.forEach((meaning) => {
+      reanderMeaning(meaning);
+    });
+
+    // add a divider after meanings
+    meaningsContainer.insertAdjacentHTML(
+      "beforeend",
+      /*html*/ `<div class="meaning__divider"></div>`
+    );
+
+    renderSource(data.sourceUrls[0]);
+  } catch (error) {
+    if (error.status === 404) {
+      renderNotFound(error);
+    }
+  } finally {
+    animatedLoading.classList.remove("animated-loading--visible");
+  }
 });
+
 window.addEventListener("keydown", (event) => {
   if (event.code === "Enter" && searchInput === document.activeElement) {
     searchBtn.click();
@@ -96,9 +120,13 @@ const getWordFromAPI = async function (word) {
       `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
     );
     const data = await response.json();
+    if (response.status === 404) {
+      data.status = 404;
+      throw data;
+    }
     return data[0];
   } catch (error) {
-    console.dir(error);
+    throw error;
   }
 };
 
@@ -112,7 +140,7 @@ const renderResult = function (data) {
     data.phonetics.map((el) => el.audio).filter((el) => el)[0]
   );
 
-  const resultHtml = `
+  const resultHtml = /*html*/ `
         <div class="result__text-box">
           <h1 class="heading-xl">${data.word}</h1>
           <p class="heading-m result__phonetic">${phonetic}</p>
@@ -150,32 +178,79 @@ function reanderMeaning({ partOfSpeech, definitions, synonyms }) {
     )
     .join("");
 
-  const meaningHtml = `
-  <li class="meaning">
-    <div class="meaning__header">
-      <p class="heading-m meaning__type">${partOfSpeech}</p>
-      <div class="meaning__divider"></div>
-    </div>
-    <div class="meaning__description">
-      <p class="body-l meaning__title">Meaning</p>
-      <ul class="meaning__items">
-        ${definitionsHtml}
-        
-      </ul>
-    </div>
-    ${
-      synonyms.length > 0
-        ? `<div class="synonyms">
-      <p class="body-l synonyms__title">Synonyms</p>
-      <div class="synonyms__words">
-        ${synonyms
-          .map((el) => `<p class="body-lb synonyms__word">${el}</p>`)
-          .join("")}
+  const meaningHtml = /*html*/ `
+     <li class="meaning">
+      <div class="meaning__header">
+        <p class="heading-m meaning__type">${partOfSpeech}</p>
+        <div class="meaning__divider"></div>
       </div>
-    </div>`
-        : ``
-    }
-  </li>
+      <div class="meaning__description">
+        <p class="body-l meaning__title">Meaning</p>
+        <ul class="meaning__items">
+          ${definitionsHtml}
+        </ul>
+      </div>
+      ${
+        synonyms.length > 0
+          ? /*html*/ `<div class="synonyms">
+            <p class="body-l synonyms__title">Synonyms</p>
+            <div class="synonyms__words">
+              ${synonyms
+                .map((el) => `<p class="body-lb synonyms__word">${el}</p>`)
+                .join("")}
+            </div>
+          </div>`
+          : ``
+      }
+    </li>
+    
   `;
   meaningsContainer.insertAdjacentHTML("beforeend", meaningHtml);
+}
+
+function renderNotFound(error) {
+  const notFoundHtml = /*html */ `<p class="not-found__emoji">😕</p>
+  <h1 class="heading-sb not-found__title">${error.title}</h1>
+  <p class="body-m not-found__error-message">
+   ${error.message + error.resolution}
+  </p>`;
+
+  notFoundContainer.insertAdjacentHTML("beforeend", notFoundHtml);
+}
+
+function renderSource(url) {
+  const sourceHtml = /*html*/ `
+  <a
+      href="${url}"
+      class="body-s source__link"
+      >Source</a
+    >
+    <a
+    href="${url}"
+      class="body-s source__link--full"
+      >${url}</a
+    >
+    <a href="${url}">
+      <img
+        src="./assets/images/icon-new-window.svg"
+        alt=""
+        class="source__icon"
+      />
+    </a> `;
+  sourceContainer.insertAdjacentHTML("beforeend", sourceHtml);
+}
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
+function clearWordSearch() {
+  [
+    resultContainer,
+    meaningsContainer,
+    sourceContainer,
+    notFoundContainer,
+  ].forEach((el) => removeAllChildNodes(el));
 }
