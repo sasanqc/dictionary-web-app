@@ -38,8 +38,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/dictionary-web-app-with-preferred-color-schema-t7bE1JkhYG)
-- Live Site URL: [Add live site URL here](https://delicate-cascaron-a6f4f6.netlify.app/)
+- Solution URL: [Frontend Mentor | Dictionary web app](https://www.frontendmentor.io/solutions/dictionary-web-app-with-preferred-color-schema-t7bE1JkhYG)
+- Live Site URL: [Dictionary web app](https://delicate-cascaron-a6f4f6.netlify.app/)
 
 ## My process
 
