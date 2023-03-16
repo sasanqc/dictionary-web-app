@@ -34,7 +34,7 @@ Users should be able to:
 ### Screenshot
 
 ![](/screenshots/screenshot-desktop-1.png)
-![](/screenshots/screenshot-desktop-1.png)
+![](/screenshots/screenshot-mobile-1.png)
 
 ### Links
 
