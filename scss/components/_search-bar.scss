@@ -27,9 +27,11 @@
       border: 1px solid var(--clr-primary-orange);
     }
   }
+
   &__input:focus ~ &__invalid-text--visible {
     visibility: hidden;
   }
+
   &__invalid-text {
     position: absolute;
     bottom: -3rem;
@@ -40,6 +42,7 @@
       visibility: visible;
     }
   }
+
   &__icon {
     position: absolute;
     right: 2.4rem;

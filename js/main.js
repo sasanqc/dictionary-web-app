@@ -221,6 +221,7 @@ function reanderMeaning({ partOfSpeech, definitions, synonyms }) {
 }
 
 function renderNotFound(error) {
+  notFoundContainer.style.display = "block";
   const notFoundHtml = /*html */ `<p class="not-found__emoji">😕</p>
   <h1 class="heading-sb not-found__title">${error.title}</h1>
   <p class="body-m not-found__error-message">
